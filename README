@@ -1,0 +1,6 @@
+A simple Java library that provides API to access contents of Hacker News
+(http://news.ycombinator.com/)
+
+This library doesnt interface with HN directly, but instead uses the JSON APIs 
+exposed by http://api.ihackernews.com/ site. 
+Thanks to Ronnie Roller (http://ronnieroller.com/) for exposing these JSON APIs.
