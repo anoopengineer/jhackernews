@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.dailygyan.jhackernews;
+package com.dailygyan.jhackernews.news;
 
 import java.util.List;
 

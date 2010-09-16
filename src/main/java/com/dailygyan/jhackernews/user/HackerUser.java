@@ -13,28 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.dailygyan.jhackernews;
+package com.dailygyan.jhackernews.user;
 
-public class Main {
-
+/**
+ * The Interface HackerUser.
+ */
+public interface HackerUser {
+    
     /**
-     * @param args
+     * Gets the user profile.
+     * 
+     * @param userName the user name
+     * @return the user profile
      */
-    public static void main(String[] args) {
-
-        // lists the first two pages of HN
-        HackerNews hn = HackerFactory.getHackerNews();
-        Page page = hn.getNews();
-        String id = page.getNextId();
-        System.out.println("First page contents:");
-        for (News news : page.getNews()) {
-            System.out.println(news);
-        }
-
-        System.out.println("Second page contents:");
-        page = hn.getNews(id);
-        for (News news : page.getNews()) {
-            System.out.println(news);
-        }
-    }
+    public User getUserProfile(String userName);
 }

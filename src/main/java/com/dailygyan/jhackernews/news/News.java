@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.dailygyan.jhackernews;
+package com.dailygyan.jhackernews.news;
 
 /**
  * The Class that represents a news item. The page element will contain a list
