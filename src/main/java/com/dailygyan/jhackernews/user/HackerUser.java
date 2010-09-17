@@ -27,4 +27,13 @@ public interface HackerUser {
      * @return the user profile
      */
     public User getUserProfile(String userName);
+
+    /**
+     * Logs the user in.
+     * 
+     * @param userName the user name
+     * @param password the password
+     * @return the authenticationToken
+     */
+    public String login(String userName, String password);
 }

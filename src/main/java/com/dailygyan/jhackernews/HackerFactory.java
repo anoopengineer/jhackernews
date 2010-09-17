@@ -15,7 +15,12 @@
  */
 package com.dailygyan.jhackernews;
 
-import com.dailygyan.jhackernews.impl.HackerNewsImpl;
+import com.dailygyan.jhackernews.comment.HackerComments;
+import com.dailygyan.jhackernews.comment.impl.HackerCommentsImpl;
+import com.dailygyan.jhackernews.news.HackerNews;
+import com.dailygyan.jhackernews.news.impl.HackerNewsImpl;
+import com.dailygyan.jhackernews.user.HackerUser;
+import com.dailygyan.jhackernews.user.impl.HackerUserImpl;
 
 /**
  * A factory for creating Hacker objects. Get started by calling the
@@ -24,12 +29,49 @@ import com.dailygyan.jhackernews.impl.HackerNewsImpl;
 public class HackerFactory {
 
     /**
+     * The singleton instance of {@link HackerNews}. Will be returned on call to
+     * getHackerNews()
+     */
+    private static final HackerNews HACKER_NEWS_INSTANCE = new HackerNewsImpl();
+
+    /**
+     * The singleton instance of {@link HackerComments}. Will be returned on
+     * call to getHackerComments()
+     */
+    private static final HackerComments HACKER_COMMENTS_INSTANCE = new HackerCommentsImpl();
+
+    /**
+     * The singleton instance of {@link HackerUser}. Will be returned on
+     * call to getHackerUser()
+     */
+    private static final HackerUser HACKER_USER_INSTANCE = new HackerUserImpl();
+
+    /**
      * Gets the hacker news.
      * 
      * @return the hacker news
      */
     public static HackerNews getHackerNews() {
-        return new HackerNewsImpl();
+        return HACKER_NEWS_INSTANCE;
     }
 
+    /**
+     * Gets the hacker comments.
+     * 
+     * @return the hacker comments
+     */
+    public static HackerComments getHackerComments() {
+
+        return HACKER_COMMENTS_INSTANCE;
+    }
+
+    /**
+     * Gets the hacker user.
+     * 
+     * @return the hacker user
+     */
+    public static HackerUser getHackerUser() {
+
+        return HACKER_USER_INSTANCE;
+    }
 }

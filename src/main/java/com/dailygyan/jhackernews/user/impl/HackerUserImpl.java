@@ -17,8 +17,11 @@ package com.dailygyan.jhackernews.user.impl;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLEncoder;
 
 import com.dailygyan.jhackernews.user.HackerUser;
 import com.dailygyan.jhackernews.user.User;
@@ -48,6 +51,57 @@ public class HackerUserImpl implements HackerUser {
      */
     public User getUserProfile(String userName) {
         return fetch("http://api.ihackernews.com/profile/" + userName);
+    }
+
+    public String login(String userName, String password) {
+
+        HttpURLConnection conn = null;
+        String retVal = null;
+        try {
+            URL url = new URL("http://api.ihackernews.com/login");
+
+            String data = URLEncoder.encode("username", "UTF-8") + "="
+                    + URLEncoder.encode(userName, "UTF-8");
+            data += "&" + URLEncoder.encode("password", "UTF-8") + "="
+                    + URLEncoder.encode(password, "UTF-8");
+
+            conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type",
+                    "application/x-www-form-urlencoded");
+
+            conn.setRequestProperty("Content-Length", ""
+                    + Integer.toString(data.getBytes().length));
+            conn.setRequestProperty("Content-Language", "en-US");
+
+            conn.setUseCaches(false);
+            conn.setDoInput(true);
+            conn.setDoOutput(true);
+            OutputStreamWriter wr = new OutputStreamWriter(conn
+                    .getOutputStream());
+            wr.write(data);
+            wr.flush();
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn
+                    .getInputStream()));
+            StringBuffer buffer = new StringBuffer();
+            String inputLine = null;
+
+            while ((inputLine = in.readLine()) != null) {
+                buffer.append(inputLine);
+            }
+            in.close();
+            wr.close();
+
+            retVal = buffer.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (conn != null) {
+            conn.disconnect();
+        }
+
+        return retVal;
     }
 
     /**
@@ -80,6 +134,16 @@ public class HackerUserImpl implements HackerUser {
         }
 
         return user;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Start");
+        HackerUserImpl hu = new HackerUserImpl();
+
+        String str = hu.login("anoopengineer", "anoopengineer@gmail.com");
+
+        System.out.println("auth = " + str);
+
     }
 
 }
