@@ -23,6 +23,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 
+import com.dailygyan.jhackernews.user.AuthToken;
 import com.dailygyan.jhackernews.user.HackerUser;
 import com.dailygyan.jhackernews.user.User;
 import com.google.gson.Gson;
@@ -53,10 +54,16 @@ public class HackerUserImpl implements HackerUser {
         return fetch("http://api.ihackernews.com/profile/" + userName);
     }
 
-    public String login(String userName, String password) {
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.dailygyan.jhackernews.user.HackerUser#login(java.lang.String,
+     * java.lang.String)
+     */
+    public AuthToken login(String userName, String password) {
 
         HttpURLConnection conn = null;
-        String retVal = null;
+        AuthToken retVal = null;
         try {
             URL url = new URL("http://api.ihackernews.com/login");
 
@@ -93,12 +100,13 @@ public class HackerUserImpl implements HackerUser {
             in.close();
             wr.close();
 
-            retVal = buffer.toString();
+            retVal = gson.fromJson(buffer.toString(), AuthToken.class);
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        if (conn != null) {
-            conn.disconnect();
+        } finally {
+            if (conn != null) {
+                conn.disconnect();
+            }
         }
 
         return retVal;
@@ -119,7 +127,6 @@ public class HackerUserImpl implements HackerUser {
             URLConnection conn = url.openConnection();
             BufferedReader in = new BufferedReader(new InputStreamReader(conn
                     .getInputStream()));
-
             StringBuilder stringBuilder = new StringBuilder();
             String inputLine = null;
 
@@ -128,22 +135,11 @@ public class HackerUserImpl implements HackerUser {
             }
             in.close();
             user = gson.fromJson(stringBuilder.toString(), User.class);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         return user;
-    }
-
-    public static void main(String[] args) {
-        System.out.println("Start");
-        HackerUserImpl hu = new HackerUserImpl();
-
-        String str = hu.login("anoopengineer", "anoopengineer@gmail.com");
-
-        System.out.println("auth = " + str);
-
     }
 
 }

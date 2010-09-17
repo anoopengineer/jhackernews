@@ -19,21 +19,26 @@ package com.dailygyan.jhackernews.user;
  * The Interface HackerUser.
  */
 public interface HackerUser {
-    
+
     /**
      * Gets the user profile.
      * 
-     * @param userName the user name
+     * @param userName
+     *            the user name
      * @return the user profile
      */
     public User getUserProfile(String userName);
 
     /**
-     * Logs the user in.
+     * Allows the user to log into HN.
      * 
-     * @param userName the user name
-     * @param password the password
-     * @return the authenticationToken
+     * @param userName
+     *            the user name
+     * @param password
+     *            the password
+     * @return If the authentication succeeds, the return value will be an
+     *         AuthToken object with a valid token element. Else, a null object
+     *         will be returned
      */
-    public String login(String userName, String password);
+    public AuthToken login(String userName, String password);
 }
