@@ -41,6 +41,134 @@ public class News {
 
     /** The username. */
     String postedBy;
+    
+    
+
+    /**
+     * @return the title
+     */
+    public String getTitle() {
+        return title;
+    }
+
+
+
+    /**
+     * @param title the title to set
+     */
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+
+
+    /**
+     * @return the url
+     */
+    public String getUrl() {
+        return url;
+    }
+
+
+
+    /**
+     * @param url the url to set
+     */
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+
+
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+
+
+    /**
+     * @return the commentCount
+     */
+    public int getCommentCount() {
+        return commentCount;
+    }
+
+
+
+    /**
+     * @param commentCount the commentCount to set
+     */
+    public void setCommentCount(int commentCount) {
+        this.commentCount = commentCount;
+    }
+
+
+
+    /**
+     * @return the points
+     */
+    public int getPoints() {
+        return points;
+    }
+
+
+
+    /**
+     * @param points the points to set
+     */
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
+
+
+    /**
+     * @return the postedAgo
+     */
+    public String getPostedAgo() {
+        return postedAgo;
+    }
+
+
+
+    /**
+     * @param postedAgo the postedAgo to set
+     */
+    public void setPostedAgo(String postedAgo) {
+        this.postedAgo = postedAgo;
+    }
+
+
+
+    /**
+     * @return the postedBy
+     */
+    public String getPostedBy() {
+        return postedBy;
+    }
+
+
+
+    /**
+     * @param postedBy the postedBy to set
+     */
+    public void setPostedBy(String postedBy) {
+        this.postedBy = postedBy;
+    }
+
+
 
     /*
      * (non-Javadoc)
